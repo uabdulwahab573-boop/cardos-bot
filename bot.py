@@ -19,7 +19,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Welcome to Cardos Bot 👋\n\n"
         "Follow these steps:\n"
         "1. Download CardCosmic\n"
-        "2. Use code: JSEXD8\n"
+        "2. Use the invitation code: JSEXD8\n"
         "3. Complete signup\n\n"
         "Click below when done 👇"
     )
@@ -52,10 +52,15 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.message.from_user
 
-    await context.bot.send_message(
-        chat_id=ADMIN_ID,
-        text=f"📥 Screenshot from @{user.username} (ID: {user.id})"
-    )
+username = user.username if user.username else "NoUsername"
+
+await context.bot.send_message(
+    chat_id=ADMIN_ID,
+    text=f"📥 Screenshot from {username} (ID: {user.id})"
+)
+        
+        
+    
 
     await context.bot.send_photo(
         chat_id=ADMIN_ID,
